@@ -56,3 +56,35 @@
 
   - На сайте ruvds.com во вкладке мои серверы указываем название адреса котоный купили в reg.ru
 </details>
+
+## Настройка nginx
+
+<code>
+  
+    server {
+      настройки по умолчанию
+      listen 80;
+      
+      nginx будет смотреть только публичные статические файлы проекта
+      root /var/www/academy;
+      
+      имя сайта
+      server_name polzaacademy.ru;
+      
+      какой файл будет использован в качестве первой входной точки
+      index index.html index.htm index.nginx-debian.html;
+  
+      отображение ошибки 404 
+    	location / {
+    		try_files $uri $uri/ =404;
+    	}
+    
+      отображение фавиконки
+      location = /favicon.ico {
+          log_not_found off;
+          access_log off;
+      }
+    }  
+
+</code>
+
